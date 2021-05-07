@@ -7,7 +7,7 @@ using System.Text;
 namespace csharp_training_tests
 {
     [TestFixture]
-    class VariableTests
+    class VariablesTests
     {
         [Test]
         public void Variables_When_Test_Then_ReturnResult_001()
