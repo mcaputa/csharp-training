@@ -7,7 +7,7 @@ using System.Text;
 namespace csharp_training_tests
 {
     [TestFixture]
-    class VariablesTests
+    class BasicCodingTests
     {
         [Test]
         public void Variables_When_Test_Then_ReturnResult_001()
@@ -72,7 +72,7 @@ namespace csharp_training_tests
         }
 
         [Test]
-        public void CheckResult_WhenDeclareSameNameVariableInLocalScope_Then_Error()
+        public void CheckResult_WhenDeclareSameNameVariableInLocalScope_Then_Error_003()
         {
             //given
 
@@ -87,5 +87,69 @@ namespace csharp_training_tests
             Assert.Pass();
         }
 
+        [Test]
+        public void KindOfStatements_004()
+        {
+            //given
+            int a = 19; // declaration statement
+            int b = 2; // declaration statement
+            int c;      //declaration statement
+            c = a + b; // expression statements
+            Console.WriteLine(c); // expression statements
+
+            for (int i = 0; i < c; i++)  // iteration statement
+            {
+
+            }
+
+            if (true) // selection statement
+            {
+
+            }
+
+            switch (c) // selection statement
+            {
+                default:
+                    break;
+            }
+
+            //when
+            //then
+            Assert.Pass();
+        }
+
+        [Test]
+        public void KindOfExpressions_005()
+        {
+            //given
+            string a = "Hello World"; // expressions => literals
+            int b = 42; //expressions => literals
+            //+ - operator
+            b++; // b - operand, ++ operator
+            //2 + 2; // 2 is literal expression , 2 + 2 is expressions, 2 is literal expression.
+            var c = (a + b); // parenthesize expression
+
+            // 2 + 2; //no statement
+            Math.Sqrt(2); // statement, because of e.g. Console.ReadKey()
+
+            //when
+            //then
+            Assert.Pass();
+        }
+
+        [Test]
+        public void Comments_006()
+        {
+            //given
+
+
+            /*
+             * delimited comment
+             */
+
+            Console.WriteLine(/*"delimited comment"*/ "test");
+            //when
+            //then
+        }
     }
 }
