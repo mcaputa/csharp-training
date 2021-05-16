@@ -1,7 +1,10 @@
-﻿using FluentAssertions;
+﻿using csharp_training.Directives;
+using FluentAssertions;
+using NSubstitute;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace csharp_training_tests
@@ -151,5 +154,32 @@ namespace csharp_training_tests
             //when
             //then
         }
+        #region test directives
+        [Test]
+        [System.Diagnostics.Conditional("DEBUG")] //can be instead #if #else. Compiler will omit call this method. 
+        public void Directives_007()
+        {
+            //given
+#if DEBUG 
+            Console.WriteLine("debug");
+#else 
+            Console.WriteLine("release");
+#endif
+
+            var subs = Substitute.For<ConditionalMethod>();
+#pragma warning disable CS0168
+            int a;
+
+            //when
+            subs.Main();
+
+            //then
+            subs.result.Should().Be("release");
+            Debug.Assert(subs.result == "debug");
+            Assert.Pass();
+        }
+        #endregion
+
+
     }
 }
