@@ -75,5 +75,44 @@ namespace csharp_training_tests
             bigInteger.Should().Be(2_147_483_648);
             Assert.Pass();
         }
+
+        [Test]
+        public void StringType_004()
+        {
+            //given
+            int interationNumber = 100_000;
+            string stringType = string.Empty;
+            var stopwatch = new Stopwatch();
+
+            StringBuilder stringBuilder = new StringBuilder();
+
+            //when
+            #region string vs string builder
+            stopwatch.Start();
+            for (int i = 0; i < interationNumber; i++)
+            {
+                stringType += "test";
+            }
+            stopwatch.Stop();
+            Trace.WriteLine($"string: {stopwatch.ElapsedMilliseconds}, {stringType}");
+
+            stopwatch.Restart();
+            for (int i = 0; i < interationNumber; i++)
+            {
+                stringBuilder.Append("test");
+            }
+
+            stopwatch.Stop();            
+            Trace.WriteLine($"string builder: {stopwatch.ElapsedMilliseconds}, {stringBuilder}");
+            #endregion
+
+            Trace.WriteLine($"{interationNumber:f1}");
+
+            var message = FormattableString.Invariant($"test");
+
+
+            //then
+            Assert.Pass();
+        }
     }
 }
