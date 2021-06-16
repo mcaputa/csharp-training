@@ -302,5 +302,34 @@ namespace csharp_training_tests
 
             Assert.Pass();
         }
+
+        [Test]
+        public void Nullable_010()
+        {
+            //given
+            Nullable<int> a = null;
+            int? b = 10;
+
+            var result = a + b;
+
+            result.Should().BeNull();
+
+            int c = 10;
+            result = c + a;
+            result.Should().BeNull();
+
+            string? referenceFromLegacyComponent = GetLegacyReference();
+
+            string nonNullableReferenceFromLegacyComponent = referenceFromLegacyComponent!; // null forgiving operator
+
+            //when
+            //then
+            Assert.Pass();
+        }
+
+        private string? GetLegacyReference()
+        {
+            return string.Empty;
+        }
     }
 }
