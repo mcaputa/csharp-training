@@ -6,6 +6,10 @@ namespace csharp_training.Models
 {
     public struct ConstructorStruct
     {
+        //public ConstructorStruct() //error
+        //{
+        //}
+
         public ConstructorStruct(int age, string name)
         {
 

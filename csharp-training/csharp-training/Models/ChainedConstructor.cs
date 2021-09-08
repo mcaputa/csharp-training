@@ -8,7 +8,7 @@ namespace csharp_training.Models
     {
         public string Name { get; set; }
         public int Id { get; set; }
-
+        
         public ChainedConstructor() : this(null)    
         {
 
@@ -19,7 +19,7 @@ namespace csharp_training.Models
 
         }
 
-        public ChainedConstructor(string name, int id)
+        private ChainedConstructor(string name, int id)
         {
             Name = name;
             Id = id;
