@@ -11,6 +11,11 @@ namespace csharp_training.Models
 
         public static readonly string Town;
 
+        static ConstructorClass()
+        {
+            Console.WriteLine("Run Static");
+        }
+
         public ConstructorClass(int age, string name)
         {
             Year = GetYear();
@@ -21,5 +26,9 @@ namespace csharp_training.Models
         {
             return DateTime.Now.Year;
         }
+
+        public static int a = b + 1;
+        public static int b = 42;
+        public static int c = b + 1;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using csharp_training.Collections;
 using csharp_training.Directives;
 using csharp_training.Model;
+using csharp_training.Models;
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
@@ -325,6 +326,62 @@ namespace csharp_training_tests
             //when
             //then
             Assert.Pass();
+        }
+
+        [Test]
+        public void Out_011()
+        {
+            //given
+
+            //when
+            var result = Divide(10, 3, out int r); 
+
+            //then
+            r.Should().Be(1);
+        }
+
+        [Test]
+        public void Ref_012()
+        {
+            //given
+            //when
+            var test = new RefClass() {
+                Name = "Maciek"
+            };
+
+            var test1 = new RefClass()
+            {
+                Name = "Maciek1"
+            };
+
+            ReplaceRefClass(ref test);
+            ReplaceRefClass(test1);
+
+            //then
+            test.Name.Should().Be("Maciek2");
+            test1.Name.Should().Be("Maciek1");
+        }
+
+        public void ReplaceRefClass(RefClass refClass)
+        {
+            refClass = new RefClass()
+            {
+                Name = "Maciek3"
+            };
+        }
+
+        public void ReplaceRefClass(ref RefClass refClass) //ref on reference type allow to replace object which you pass
+        {
+            refClass = new RefClass()
+            {
+              Name = "Maciek2"
+            };
+        }
+
+        private int Divide(int x, int y, out int reminder) // reminder is a reference to r in 011
+        {
+            reminder = x % y;
+            return x / y;
         }
 
         private string? GetLegacyReference()
