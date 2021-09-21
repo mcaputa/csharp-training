@@ -362,6 +362,17 @@ namespace csharp_training_tests
             test1.Name.Should().Be("Maciek1");
         }
 
+        [Test]
+        public void StringExtensionMethods_013()
+        {
+            //given
+            //when
+            var result = "test".Show();
+
+            //then
+            result.Should().Be("Default value : test");
+        }
+
         public void ReplaceRefClass(RefClass refClass)
         {
             refClass = new RefClass()
