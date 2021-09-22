@@ -373,6 +373,44 @@ namespace csharp_training_tests
             result.Should().Be("Default value : test");
         }
 
+        [Test]
+        public void NullConditionalIndexAccess_014()
+        {
+            //given
+            int[]? arr = null;
+            //when
+            var result = arr?[5];
+
+            //then
+            result.Should().BeNull();
+        }
+
+        [Test]
+        public void CustomOperators_015()
+        {
+            //given
+            var counter = new Counter();
+            counter.AddNext();
+            //when
+            var result = counter + "1";
+
+            //then
+            result.Should().Be(2);
+        }
+
+        [Test]
+        public void CustomExplicityImplicity_016()
+        {
+            //given
+            //when
+            Counter x = 153;
+            int y = (int) x;
+
+            //then
+            x.GetValue().Should().Be(153);
+            y.Should().Be(153);
+        }
+
         public void ReplaceRefClass(RefClass refClass)
         {
             refClass = new RefClass()
