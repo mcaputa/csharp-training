@@ -411,6 +411,31 @@ namespace csharp_training_tests
             y.Should().Be(153);
         }
 
+        [Test]
+        public void GenericTest_017()
+        {
+            //given
+
+            //when
+            var item = new NamedConstruction<object>(new object());
+            var item2 = new NamedConstruction<string>("test");
+
+            //then
+            //item = item2; // error
+        }
+
+        [Test]
+        public void GenericConstraintTest_018()
+        {
+            //given
+            //when
+            var test = new GenericConstraints<int>();
+            //var test2 = new GenericConstraints<string>(); //error
+            //var test2 = new GenericConstraints<ParameterLessConstructor>(); // error
+
+            //then
+        }
+
         public void ReplaceRefClass(RefClass refClass)
         {
             refClass = new RefClass()
