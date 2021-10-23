@@ -6,8 +6,11 @@ using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 
 namespace csharp_training_tests
@@ -434,6 +437,183 @@ namespace csharp_training_tests
             //var test2 = new GenericConstraints<ParameterLessConstructor>(); // error
 
             //then
+        }
+
+        [Test]
+        public void CheckIListParameterTest_019()
+        {
+            //given
+            var customGenericIList = new CustomGenericIListClass<int>();        
+            var list = new List<int>();
+            //when
+            //then
+            //RequireNonGenericIList(customGenericIList); //error
+            RequireNonGenericIList(list);
+
+            RequireGenericIList(customGenericIList);
+            RequireGenericIList(list);
+        }
+        [Test]
+        public void CallAddMethodOnArray_020()
+        {
+            //given
+            int[] arr = new int[4] { 1,2,3,4 };
+            IList<int> iList = arr;
+
+            iList.Add(5); //System.NotSupportedException : Collection was of a fixed size.
+
+            //when
+            //then
+        }
+
+        [Test]
+        public void YieldTests_021()
+        {
+            //given
+            var numbers = new List<int>();
+            var persons = new List<Person>();
+            var names = new List<string>();
+
+
+            //when
+            var yieldClass = new YieldClass();
+
+            IEnumerable<int> enumerableNumbers = yieldClass.ReturnValueFromLoop();
+            IEnumerable<Person> enumerablePerson = yieldClass.ReturnPersonDetails();
+            //IEnumerable<string> enumarablePersonName = yieldClass.GetPersonsName(); 
+
+            foreach (var number in enumerableNumbers)
+            {
+                numbers.Add(number);
+            }
+
+            foreach (var person in enumerablePerson)
+            {
+                persons.Add(person);
+            }
+
+            //foreach (var name in enumarablePersonName) 
+            //{
+            //    names.Add(name);
+            //}
+
+            //then
+
+            numbers.Should().BeEquivalentTo(new[] { 0, 1, 2, 3, 4 });
+            persons.Select(x => x.Name).Should().BeEquivalentTo(new string[] { "Bob", "John", "Garry" });
+            //names.Should().BeEquivalentTo(new string[] { "Tom", "Jerry", "Julia" });
+
+        }
+
+        [Test]
+        public void DictionaryTests_22()
+        {
+            //given
+            //when
+            var dictionary = new Dictionary<string, int>();
+            foreach (KeyValuePair<string, int> row in dictionary)
+            {
+            }
+
+            var dict = new Dictionary<string, string>()
+            {
+                { "Maciek", "Wroclaw" },
+            };
+
+            var dict2 = new Dictionary<string, string>()
+            {
+                ["Maciek"] = "Wroclaw"
+            };
+
+            var sortedDictionary = new SortedDictionary<string, int>()
+            {
+                {"Maciek", 27 },
+                {"Ala", 19 }
+            };
+
+            //var ok = sortedDictionary.Keys[2]; //error
+
+            foreach (var item in sortedDictionary)
+            {
+
+            }
+
+            var sortedDictionaryList = new SortedList<string, int>()
+            {
+                {"Maciek", 27 },
+                {"Ala", 19 }
+            };
+
+            var result = sortedDictionaryList.Keys[1];
+
+
+            //then
+
+            result.Should().Be("Maciek");
+        }
+
+        [Test]
+        public void SetsTests_23()
+        {
+            //given
+            //when
+            var hashSet = new HashSet<string>()
+            {
+                "maciek",
+                "kuba"
+            };
+            
+            //var result = hashSet[5]; //error
+
+            //then
+        }
+
+        [Test]
+        public void QueueAndStackTests_24()
+        {
+            //given
+            var queue = new Queue<int>();
+            queue.Enqueue(1); // first to dequeue
+            queue.Enqueue(2);
+            queue.Enqueue(3);
+            queue.Enqueue(4); // last in queue
+
+            var stack = new Stack<string>();
+            stack.Push("1"); // last
+            stack.Push("2");
+            stack.Push("3"); // pop first
+
+
+            //when
+            foreach (var item in queue)
+            {               
+            }
+
+
+            //then
+            queue.Dequeue().Should().Be(1);
+            stack.Pop().Should().Be("3");
+        }
+
+        [Test]
+        public void ImmutableDictionary_025()
+        {
+            //given
+            var immutableDictionary = ImmutableDictionary.Create<int, string>();
+            immutableDictionary = immutableDictionary.Add(1, "One");
+            //when
+
+            //then
+        }
+
+        public void RequireNonGenericIList(IList list)
+        {
+
+        }
+
+        public void RequireGenericIList<T>(IList<T> list)
+        {
+
         }
 
         public void ReplaceRefClass(RefClass refClass)
