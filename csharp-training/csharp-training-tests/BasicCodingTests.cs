@@ -1,4 +1,5 @@
-﻿using csharp_training.Collections;
+﻿using csharp_training.Accessibility;
+using csharp_training.Collections;
 using csharp_training.Directives;
 using csharp_training.Model;
 using csharp_training.Models;
@@ -606,6 +607,21 @@ namespace csharp_training_tests
             //then
         }
 
+        [Test]
+        public void Accesibility_Test()
+        {
+            //given
+            var assembly1 = new Assembly1();
+            
+            
+            //assembly1.myValue = 10; //error
+            var derived = new Derived();
+            
+            
+            //derived.myValue = 10; //error
+            //when
+            //then
+        }
         public void RequireNonGenericIList(IList list)
         {
 

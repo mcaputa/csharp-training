@@ -23,5 +23,15 @@ namespace csharp_training_tests
 
             //then
         }
+
+        [Test]
+        public void Covariance_Test_002()
+        {
+            //given            
+            var cov = new Another();
+            //when
+            cov.Main();
+            //then
+        }
     }
 }
