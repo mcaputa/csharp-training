@@ -1,4 +1,5 @@
 ﻿using csharp_training.Inheritance;
+using FluentAssertions;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,30 @@ namespace csharp_training_tests
             //when
             cov.Main();
             //then
+        }
+
+        [Test]
+        public void Hidden_vs_Override_Test_003()
+        {
+            //given
+            var derived = new Hidden();
+            Dervied_Abstract baseObj = derived;
+
+            //when
+            var derived_resultForHidden = derived.CustomMethod();
+            var base_resultForHidden = baseObj.CustomMethod(); //there is no replace. It return base result. 
+
+            var derived_resultForOverride = derived.MethodToOverride();
+            var base_resultForOverride = baseObj.MethodToOverride(); //it is the same like in derive
+
+            //then
+            derived_resultForHidden.Should().NotBe(base_resultForHidden);
+            derived_resultForHidden.Should().Be("hidden derived method");
+            base_resultForHidden.Should().Be("Base hidden method");
+
+
+            derived_resultForOverride.Should().Be(base_resultForOverride);
+
         }
     }
 }

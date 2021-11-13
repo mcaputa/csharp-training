@@ -614,11 +614,11 @@ namespace csharp_training_tests
             var assembly1 = new Assembly1();
             
             
-            //assembly1.myValue = 10; //error
+            //assembly1.protectedInternal = 10; //error
             var derived = new Derived();
             
-            
-            //derived.myValue = 10; //error
+            //derived.isProtected //error
+            //derived.protectedInternal = 10; //error
             //when
             //then
         }

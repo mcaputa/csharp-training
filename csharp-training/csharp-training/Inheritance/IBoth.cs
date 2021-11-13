@@ -4,7 +4,7 @@ using System.Text;
 
 namespace csharp_training.Inheritance
 {
-    public interface IBoth : IBaseInterface, IBaseInterface2
+    public  interface IBoth : IBaseInterface, IBaseInterface2
     {
     }
 }

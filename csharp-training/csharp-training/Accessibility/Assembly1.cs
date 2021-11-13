@@ -6,9 +6,9 @@ namespace csharp_training.Accessibility
 {
     public class Assembly1
     { 
-        protected internal int myValue = 10;
-        internal string name = "MC";
-        private protected int age = 29;
+        protected internal int protectedInternal = 10;
+        internal string internalProperty = "MC";
+        private protected int privateProtected = 29;
         protected bool isProtected = true;
     }
 
@@ -17,15 +17,25 @@ namespace csharp_training.Accessibility
         public void Main()
         {
             var assembly1 = new Assembly1();
-            assembly1.myValue = 10; //work only with internal
+            assembly1.protectedInternal = 10; //work only with internal
             //assembly1.isProtected // error
-            age = 30;
+            //assembly1.age //error
+            privateProtected = 30;
             var derived = new Derived();
-            derived.myValue = 10;
-            derived.age = 29;
+            derived.protectedInternal = 10;
+            derived.privateProtected = 29;
             derived.isProtected = true;
             isProtected = true;
             
+        }
+    }
+
+    public class Another
+    {
+        public void Main()
+        {
+            var derived = new Derived();
+            derived.protectedInternal = 10;
         }
     }
 
