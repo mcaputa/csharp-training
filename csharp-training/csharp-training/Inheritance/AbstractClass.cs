@@ -46,6 +46,11 @@ namespace csharp_training.Inheritance
         {
             return "Base to override";
         }
+
+        public string HideWarningByNewKeyword()
+        {
+            return "Base HideWarningByNewKeyword";
+        }
     }
 
     public interface IInterface : IBaseInterface, IBaseInterface2, IBoth
@@ -76,6 +81,11 @@ namespace csharp_training.Inheritance
         public override string MethodToOverride()
         {
             return "override method";
+        }
+
+        public new string HideWarningByNewKeyword()
+        {
+            return "Derived - ignore warning";
         }
     }
 }

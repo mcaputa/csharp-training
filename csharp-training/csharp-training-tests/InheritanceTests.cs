@@ -49,10 +49,18 @@ namespace csharp_training_tests
             var derived_resultForOverride = derived.MethodToOverride();
             var base_resultForOverride = baseObj.MethodToOverride(); //it is the same like in derive
 
+            var derived_resultForNew = derived.HideWarningByNewKeyword();
+            var base_resultForNew = baseObj.HideWarningByNewKeyword();
+
+
             //then
             derived_resultForHidden.Should().NotBe(base_resultForHidden);
             derived_resultForHidden.Should().Be("hidden derived method");
             base_resultForHidden.Should().Be("Base hidden method");
+
+            derived_resultForNew.Should().NotBe(base_resultForNew);
+            derived_resultForNew.Should().Be("Derived - ignore warning");
+            base_resultForNew.Should().Be("Base HideWarningByNewKeyword");
 
 
             derived_resultForOverride.Should().Be(base_resultForOverride);
