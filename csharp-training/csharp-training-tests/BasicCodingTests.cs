@@ -1,6 +1,7 @@
 ﻿using csharp_training.Accessibility;
 using csharp_training.Collections;
 using csharp_training.Directives;
+using csharp_training.Dispose;
 using csharp_training.Model;
 using csharp_training.Models;
 using FluentAssertions;
@@ -13,6 +14,7 @@ using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace csharp_training_tests
 {
@@ -608,7 +610,7 @@ namespace csharp_training_tests
         }
 
         [Test]
-        public void Accesibility_Test()
+        public void Accesibility_Test_026()
         {
             //given
             var assembly1 = new Assembly1();
@@ -622,6 +624,58 @@ namespace csharp_training_tests
             //when
             //then
         }
+
+        [Test]
+        public void Destructor_Test_027()
+        {
+            //given
+
+            //when
+            EndOfObject();
+            //then
+            Thread.Sleep(TimeSpan.FromSeconds(3));
+        }
+
+        [Test]
+        public void Dispose_Using_Test_028()
+        {
+            //given
+            //when
+            using (Dispose dispose = new Dispose()) //using statement
+            {
+                dispose.Run();
+            }
+
+            using Dispose dispose1 = new Dispose(); //using declaration
+            dispose1.Run();
+
+            using (var dispose3 = new Dispose())
+            using (var dispose4 = new Dispose())
+            {
+                dispose3.Run();
+                dispose4.Run();
+            }
+            //then
+        }
+
+        [Test]
+        public void Dispose_Foreach_029()
+        {
+            //given
+            //when
+            foreach (var dispose in new CustomDisposeEnumerator())
+            {
+                dispose.Run();
+            }
+            //then
+        }
+
+        public void EndOfObject()
+        {
+            var destructor = new Destructor();
+        }
+
+
         public void RequireNonGenericIList(IList list)
         {
 
