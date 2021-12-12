@@ -670,11 +670,23 @@ namespace csharp_training_tests
             //then
         }
 
+        [Test]
+        public void Boxing_Test_030()
+        {
+            //given
+            //when
+            var num = 5;
+            object o = 5; //boxing
+            IComparable<int> comp = num; // interface is like an object
+            //then
+            o.GetType().Should().Be(typeof(int));
+        }
+
         public void EndOfObject()
         {
             var destructor = new Destructor();
         }
-
+        
 
         public void RequireNonGenericIList(IList list)
         {
